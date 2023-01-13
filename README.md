@@ -5,3 +5,6 @@ Kill yourself in style!
 
 ## How to use
 Please read [the wiki](https://github.com/warden161/SuicidePro/wiki).
+
+### Exiled 6
+wip fix in dev branch
