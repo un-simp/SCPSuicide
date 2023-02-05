@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using Exiled.API.Features;
 using Exiled.API.Features.Items;
+using MEC;
 
 namespace SuicidePro.Addons.Effects
 {
@@ -27,6 +28,7 @@ namespace SuicidePro.Addons.Effects
                 grenade.MaxRadius = Radius;
 
             grenade.SpawnActive(player.Position, player);
+            Timing.CallDelayed(0.1f, () => player.Kill("Exploded!"));
         }
     }
 }
