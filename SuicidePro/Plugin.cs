@@ -14,11 +14,11 @@ namespace SuicidePro
     {
         public override string Author { get; } = "warden161";
         public override string Name { get; } = "Suicide - Pro Edition";
-        public override Version Version { get; } = new Version(3, 3, 0);
-        public override Version RequiredExiledVersion { get; } = new Version(6, 0, 0);
+        public override Version Version { get; } = new Version(3, 4, 0);
+        public override Version RequiredExiledVersion { get; } = new Version(8, 2, 1);
 
         public static Plugin Instance;
-        public List<CoroutineHandle> Coroutines = new List<CoroutineHandle>();
+        public List<CoroutineHandle> Coroutines = new();
         private Handler _cgEventHandlers;
 
         public override void OnEnabled()
@@ -29,7 +29,7 @@ namespace SuicidePro
 
             if (Config.ContentGunConfig.Enabled)
             {
-                _cgEventHandlers = new Handler();
+                _cgEventHandlers = new();
                 Player.Dying += _cgEventHandlers.OnDying;
                 Player.DroppingItem += _cgEventHandlers.OnDroppingItem;
                 Player.ChangingItem += _cgEventHandlers.OnChangingItem;

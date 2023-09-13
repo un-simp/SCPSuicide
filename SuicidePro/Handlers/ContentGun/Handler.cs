@@ -37,10 +37,10 @@ namespace SuicidePro.Handlers.ContentGun
 
         public void OnChangingItem(ChangingItemEventArgs ev)
         {
-            if (ev.NewItem == null)
+            if (ev.Item == null)
                 return;
 
-            if (ContentGuns.Contains(ev.NewItem.Base))
+            if (ContentGuns.Contains(ev.Item.Base))
                 ev.Player.ShowHint($"You are <b>now selecting</b> your <b><color=red>Content Gun</color></b>\nYou have <b><color=red>{Cooldowns.Find(x => x.UserId == ev.Player.UserId).UsesLeft}</color> uses left</b>.");
         }
 
@@ -59,7 +59,7 @@ namespace SuicidePro.Handlers.ContentGun
                 var handler = new CustomReasonDamageHandler(Plugin.Instance.Config.ContentGunConfig.DeathCause, float.MaxValue);
                 handler.StartVelocity = Plugin.Instance.Config.ContentGunConfig.Velocity.ToVector3(ev.Player.CameraTransform);
 
-                var ragdoll = Ragdoll.Create(new RagdollData(Server.Host.ReferenceHub, handler, Plugin.Instance.Config.ContentGunConfig.RagdollRoleType, ev.Player.Position, ev.Player.CameraTransform.rotation, Plugin.Instance.Config.ContentGunConfig.RagdollName, 1.0));
+                Ragdoll.TryCreate(new RagdollData(Server.Host.ReferenceHub, handler, Plugin.Instance.Config.ContentGunConfig.RagdollRoleType, ev.Player.Position, ev.Player.CameraTransform.rotation, Plugin.Instance.Config.ContentGunConfig.RagdollName, 1.0), out var ragdoll);
                 ragdoll.Scale = Plugin.Instance.Config.ContentGunConfig.Scale;
                 ragdoll.Spawn();
 
