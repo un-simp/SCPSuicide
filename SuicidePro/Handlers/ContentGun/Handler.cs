@@ -7,6 +7,7 @@ using Exiled.Events.EventArgs;
 using Exiled.Events.EventArgs.Player;
 using InventorySystem.Items;
 using MEC;
+using PlayerRoles.Ragdolls;
 using PlayerStatsSystem;
 using SuicidePro.Handlers.ContentGun;
 

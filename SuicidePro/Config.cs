@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
-using Exiled.API.Enums;
 using Exiled.API.Interfaces;
 using PlayerRoles;
-using UnityEngine;
 using SuicidePro.Handlers.Effects;
-using PlayerStatsSystem;
-
+using UnityEngine;
+  
 namespace SuicidePro
 {
 	public sealed class Config : IConfig
