@@ -27,24 +27,28 @@ namespace SuicidePro.Commands
             }
             
             var arg = arguments.FirstOrDefault();
-            /* var result = arg switch
-            {
-                "explode" =>  new Effects.Explode().Run(Player.Get(sender)),
-                _ => new Effects.Normal().Run(Player.Get(sender))
-            };*/
-            
-            // List of death effects (could be dynamically populated or loaded from config)
+            /* how to add new effect.
+             Create a file in ../Effects/
+             inherit IDeathEffect
+             set name and description
+             returning true means it killed them successfully
+             returning false means it didn't
+             add it to this list
+             profit
+             */
             var availableEffects = new List<IDeathEffect>
             {
                 new Effects.Explode(),
-                new Effects.Normal()
+                new Effects.Normal(),
+                new Effects.Disintegrate()
             };
             
-            if (arg.Equals("help", StringComparison.OrdinalIgnoreCase))
+            if (arg!.Equals("help", StringComparison.OrdinalIgnoreCase))
             {
                 response = "Available effects:\n" + string.Join("\n", availableEffects.Select(e => $"{e.Name}: {e.Description}"));
                 return true;
             }
+            // attempts to find the effect and if it can't default to killing normally
             var effect = availableEffects.Find(e => e.Name.Equals(arg, StringComparison.OrdinalIgnoreCase)) 
                          ?? availableEffects.Find(e => e.Name.Equals("normal", StringComparison.OrdinalIgnoreCase));
 
@@ -58,7 +62,7 @@ namespace SuicidePro.Commands
             return false;
         }
 
-        private bool IsExecutable(Player player)
+        private static bool IsExecutable(Player player)
         {
             var result = false;
             if (!Round.IsStarted)
@@ -74,9 +78,6 @@ namespace SuicidePro.Commands
             {
                 result = true;
             }
-
-           
-
             return result;
 
         }

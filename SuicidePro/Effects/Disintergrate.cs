@@ -1,0 +1,18 @@
+
+using Exiled.API.Features;
+using PlayerStatsSystem;
+using SuicidePro.util;
+
+namespace SuicidePro.Effects
+{
+    public class Disintegrate : IDeathEffect
+    {
+        public string Name { get; } = "disintegrate";
+        public string Description { get; }
+        public bool Run(Player player)
+        {
+            player.Kill(new DisruptorDamageHandler(Server.Host.Footprint, -1));
+            return true;
+        }
+    }
+}
