@@ -40,7 +40,8 @@ namespace SuicidePro.Commands
             {
                 new Effects.Explode(),
                 new Effects.Normal(),
-                new Effects.Disintegrate()
+                new Effects.Disintegrate(),
+                new Effects.Gun()
             };
             
             if (arg!.Equals("help", StringComparison.OrdinalIgnoreCase))
