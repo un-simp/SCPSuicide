@@ -9,6 +9,7 @@ using RemoteAdmin;
 using Log = Exiled.API.Features.Log;
 using SuicidePro.API;
 using SuicidePro.API.Features;
+using SuicidePro.Handlers.Effects;
 
 namespace SuicidePro.Handlers
 {
@@ -32,7 +33,13 @@ namespace SuicidePro.Handlers
 			Player player = Player.Get(playerCommandSender);
 
 			List<BaseEffect> effects = new();
-		//	foreach (var defaultEffect in Plugin.Instance.Config.KillConfigs)
+			DamageHandlerEffect test = new()
+			{
+				Name = "fling", Aliases = new[] { "wee" }, Description = "Weeeeeeeeeeeeee", Response = "tripping",
+				Reason = "Tripped!", Velocity = new Velocity(15, 1, 0)
+			};
+			effects.Add(test);
+		//foreach (var defaultEffect in Plugin.Instance.Config.KillConfigs)
 		//		effects.Add(defaultEffect);
 
 		//	foreach (var customEffect in CustomEffect.Effects)
@@ -44,8 +51,6 @@ namespace SuicidePro.Handlers
 				foreach (var commandConfig in effects.Where(commandConfig => commandConfig.Permission == "none" || player.CheckPermission(FormatPermission(commandConfig))))
 				{
 					build.Append($"<b><color=white>.kill</color> <color=yellow>{commandConfig.Name}</color></b>");
-					build.Append(
-						$"{{(commandConfig.Aliases.Any() ? $\"<color=#3C3C3C>({{String.Join(\", \", commandConfig.Aliases)}})</color>\" : String.Empty)}}");
 					build.Append($"\n<color=white>{commandConfig.Description}</color>\n\n");
 				}
 
