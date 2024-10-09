@@ -10,17 +10,7 @@ namespace SuicidePro
 	public sealed class Config : IConfig
 	{
 		public bool IsEnabled { get; set; } = true;
-
-		[Description("Name of kill command, for example .kill or you can change it to for example bruh, then the command will be .bruh")]
-		public string CommandPrefix { get; set; } = "kill";
-
-		[Description("If one of these is used, it will still summon the kill command.")]
-		public string[] CommandAliases { get; set; } = 
-		{
-			"die",
-			"suicide"
-		};
-
+		
 		[Description("If .<command prefix/alias> <any of these> is used, it will show a helpful message showing all variations usable.")]
 		public string[] HelpCommandAliases { get; set; } =
 		{
@@ -29,7 +19,7 @@ namespace SuicidePro
 			"list"
 		};
 
-		[Description("Default kill configs that are not special but just use velocity. You can add your own by copying and pasting one")]
+		/*[Description("Default kill configs that are not special but just use velocity. You can add your own by copying and pasting one")]
 		public List<DamageHandlerEffect> KillConfigs { get; set; } = new()
 		{
 			new(),
@@ -38,7 +28,7 @@ namespace SuicidePro
 			new() {Name = "flip", Description = "Do a flip!", Response = "Epic tricks",Reason = "Did a flip", Velocity = new Velocity(1f, 5, 0)},
 			new() {Name = "backflip", Description = "Do a backflip!", Response = "Epic back tricks", Reason = "Did a backflip", Velocity = new Velocity(-1f, 5, 0)},
 			new() {Name = "???", Description = "I don't even know what this will do.", Response = "bruh", Reason = "???", Velocity = new Velocity(70, 70, 70)},
-		};
+		};*/
 
         [Description("Enables debug messages in the console.")]
 		public bool Debug { get; set; }

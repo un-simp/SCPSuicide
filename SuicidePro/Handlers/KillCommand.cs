@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +7,6 @@ using Exiled.API.Features;
 using Exiled.Permissions.Extensions;
 using RemoteAdmin;
 using Log = Exiled.API.Features.Log;
-using SuicidePro;
 using SuicidePro.API;
 using SuicidePro.API.Features;
 
@@ -17,16 +15,16 @@ namespace SuicidePro.Handlers
 	[CommandHandler(typeof(ClientCommandHandler))]
 	public class KillCommand : ICommand
 	{
-		public string Command { get; } = Plugin.Instance.Config.CommandPrefix;
-		public string[] Aliases { get; } = Plugin.Instance.Config.CommandAliases;
-		public string Description { get; } = "A kill command with more features.";
+		public string Command { get; } = "kill";
+		public string[] Aliases { get; } = { "die", "suicide" };
+		public string Description { get; } = "A kill command";
 
 		public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
 		{
 			PlayerCommandSender playerCommandSender = sender as PlayerCommandSender;
 			if (playerCommandSender == null)
 			{
-				response = "You must run this command as a client and not server.";
+				response = "This command cannot be run on server console!";
 				return false;
 			}
 
@@ -34,19 +32,21 @@ namespace SuicidePro.Handlers
 			Player player = Player.Get(playerCommandSender);
 
 			List<BaseEffect> effects = new();
-			foreach (var defaultEffect in Plugin.Instance.Config.KillConfigs)
-				effects.Add(defaultEffect);
+		//	foreach (var defaultEffect in Plugin.Instance.Config.KillConfigs)
+		//		effects.Add(defaultEffect);
 
-			foreach (var customEffect in CustomEffect.Effects)
-				effects.Add(customEffect);
+		//	foreach (var customEffect in CustomEffect.Effects)
+		//		effects.Add(customEffect);
 
             if (arg != null && Plugin.Instance.Config.HelpCommandAliases.Contains(arg))
 			{
 				var build = new StringBuilder("Here are all the kill commands you can use:\n\n");
-				foreach (var commandConfig in effects)
+				foreach (var commandConfig in effects.Where(commandConfig => commandConfig.Permission == "none" || player.CheckPermission(FormatPermission(commandConfig))))
 				{
-					if (commandConfig.Permission == "none" || player.CheckPermission(FormatPermission(commandConfig)))
-						build.Append($"<b><color=white>.{Plugin.Instance.Config.CommandPrefix}</color> <color=yellow>{commandConfig.Name}</color></b> {(commandConfig.Aliases.Any() ? $"<color=#3C3C3C>({String.Join(", ", commandConfig.Aliases)})</color>" : String.Empty)}\n<color=white>{commandConfig.Description}</color>\n\n");
+					build.Append($"<b><color=white>.kill</color> <color=yellow>{commandConfig.Name}</color></b>");
+					build.Append(
+						$"{{(commandConfig.Aliases.Any() ? $\"<color=#3C3C3C>({{String.Join(\", \", commandConfig.Aliases)}})</color>\" : String.Empty)}}");
+					build.Append($"\n<color=white>{commandConfig.Description}</color>\n\n");
 				}
 
 				response = build.ToString();
