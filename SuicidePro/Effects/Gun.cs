@@ -5,7 +5,7 @@ using Exiled.API.Features.Pickups;
 using InventorySystem.Items.Firearms;
 using MEC;
 using RelativePositioning;
-using SuicidePro.util;
+using SuicidePro.Utility;
 using UnityEngine;
 using Utils.Networking;
 

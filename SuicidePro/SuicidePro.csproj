@@ -40,6 +40,7 @@
     <Compile Include="API\Enums\IgnoreRequirementType.cs" />
     <Compile Include="Commands\NewKill.cs" />
     <Compile Include="Config.cs" />
+    <Compile Include="Effects\CustomVelocity.cs" />
     <Compile Include="Effects\Disintergrate.cs" />
     <Compile Include="Effects\Explode.cs" />
     <Compile Include="Effects\Fling.cs" />
@@ -51,7 +52,8 @@
     <Compile Include="Handlers\KillCommand.cs" />
     <Compile Include="Methods.cs" />
     <Compile Include="Plugin.cs" />
-    <Compile Include="util\IDeathEffect.cs" />
+    <Compile Include="Utility\IDeathEffect.cs" />
+    <Compile Include="Utility\Velocity.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />

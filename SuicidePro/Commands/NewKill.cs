@@ -7,7 +7,7 @@ using CommandSystem;
 using Exiled.API.Features;
 using Exiled.Permissions.Extensions;
 using PlayerRoles;
-using SuicidePro.util;
+using SuicidePro.Utility;
 
 namespace SuicidePro.Commands
 {
@@ -41,7 +41,10 @@ namespace SuicidePro.Commands
                 new Effects.Explode(),
                 new Effects.Normal(),
                 new Effects.Disintegrate(),
-                new Effects.Gun()
+                new Effects.Gun(),
+                new Effects.Fling(),
+                // not sure if this should be implemented but
+                new Effects.CustomVelocity("backflip", "Do a backflip!", "did an epic backflip", 1f,5,0)
             };
             
             if (arg!.Equals("help", StringComparison.OrdinalIgnoreCase))
@@ -65,7 +68,7 @@ namespace SuicidePro.Commands
 
         private static bool IsExecutable(Player player)
         {
-            var result = false;
+            var result = true;
             if (!Round.IsStarted)
             {
                 // returns here because it MUST not run during no round

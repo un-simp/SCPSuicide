@@ -1,7 +1,7 @@
 
 using Exiled.API.Features;
 using PlayerStatsSystem;
-using SuicidePro.util;
+using SuicidePro.Utility;
 
 namespace SuicidePro.Effects
 {
