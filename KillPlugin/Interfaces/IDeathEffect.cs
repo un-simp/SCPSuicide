@@ -1,7 +1,7 @@
 
 using Exiled.API.Features;
 
-namespace SuicidePro.Utility
+namespace KillPlugin.Interfaces
 {
     public interface IDeathEffect
     {

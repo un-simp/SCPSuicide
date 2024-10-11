@@ -1,9 +1,9 @@
 
 
 using Exiled.API.Features;
-using SuicidePro.Utility;
+using KillPlugin.Interfaces;
 
-namespace SuicidePro.Effects
+namespace KillPlugin.Effects
 {
     public class Normal: IDeathEffect
     {

@@ -6,17 +6,17 @@ using System.Linq;
 using CommandSystem;
 using Exiled.API.Features;
 using Exiled.Permissions.Extensions;
+using KillPlugin.Interfaces;
 using PlayerRoles;
-using SuicidePro.Utility;
 
-namespace SuicidePro.Commands
+namespace KillPlugin.Commands
 {
     [CommandHandler(typeof(ClientCommandHandler))]
-    public class NewKill : ICommand
+    public class KillCommand : ICommand
     {
-        public string Command { get; } = "newkill";
-        public string[] Aliases { get; } = { "newuicide" };
-        public string Description { get; } = "rekill yourself";
+        public string Command { get; } = "kill";
+        public string[] Aliases { get; } = { "suicide", "die" };
+        public string Description { get; } = "kill yourself";
         
         public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
         {
@@ -66,7 +66,8 @@ namespace SuicidePro.Commands
             return false;
         }
 
-        private static bool IsExecutable(Player player)
+        // ReSharper disable once MemberCanBeMadeStatic.Local
+        private bool IsExecutable(Player player)
         {
             var result = true;
             if (!Round.IsStarted)
@@ -74,9 +75,9 @@ namespace SuicidePro.Commands
                 // returns here because it MUST not run during no round
                 return false;
             }
-            if (player.Role == RoleTypeId.Tutorial)
+            if (Plugin.Instance.Config.BannedRoles.Contains(player.Role)  || player.Role == RoleTypeId.None)
             {
-                result = false;
+               result = false;
             }
             if (player.CheckPermission("Suicide.bypass"))
             {

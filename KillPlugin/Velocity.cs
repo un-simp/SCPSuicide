@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace SuicidePro.Utility
+namespace KillPlugin
 {
     public class Velocity
     {

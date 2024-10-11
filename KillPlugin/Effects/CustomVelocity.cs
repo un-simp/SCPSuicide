@@ -1,14 +1,14 @@
 using Exiled.API.Features;
+using KillPlugin.Interfaces;
 using PlayerStatsSystem;
-using SuicidePro.Utility;
-using UnityEngine;
+
 
 // base new() {Name = "fling",Aliases = new[] {"wee"},Description = "Weeeeeeeeeeeeee",
 // Response = "tripping", Reason = "Tripped!", Velocity = new Velocity(15, 1, 0)},
 
 
 
-namespace SuicidePro.Effects
+namespace KillPlugin.Effects
 {
     public class CustomVelocity : IDeathEffect
     {
@@ -33,8 +33,8 @@ namespace SuicidePro.Effects
         
         public bool Run(Player player)
         {
-            CustomReasonDamageHandler customDeath = new CustomReasonDamageHandler(_reason, -1, string.Empty);
-            Vector3 velocity = new Utility.Velocity(VelFwd, VelUp, VelRight).ToVector3(player.Transform);
+            var customDeath = new CustomReasonDamageHandler(_reason, -1, string.Empty);
+            var velocity = new Velocity(VelFwd, VelUp, VelRight).ToVector3(player.Transform);
             customDeath.StartVelocity = velocity;
             player.Kill(customDeath);
             return true;

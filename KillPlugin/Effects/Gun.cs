@@ -3,13 +3,13 @@ using CustomPlayerEffects;
 using Exiled.API.Features;
 using Exiled.API.Features.Pickups;
 using InventorySystem.Items.Firearms;
+using KillPlugin.Interfaces;
 using MEC;
 using RelativePositioning;
-using SuicidePro.Utility;
 using UnityEngine;
 using Utils.Networking;
 
-namespace SuicidePro.Effects
+namespace KillPlugin.Effects
 {
     public class Gun : IDeathEffect
     {

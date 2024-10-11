@@ -1,9 +1,9 @@
 
 using Exiled.API.Features;
+using KillPlugin.Interfaces;
 using PlayerStatsSystem;
-using SuicidePro.Utility;
 
-namespace SuicidePro.Effects
+namespace KillPlugin.Effects
 {
     public class Disintegrate : IDeathEffect
     {

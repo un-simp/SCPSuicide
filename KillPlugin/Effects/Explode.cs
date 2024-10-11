@@ -1,10 +1,10 @@
 
 using Exiled.API.Features;
 using Exiled.API.Features.Items;
+using KillPlugin.Interfaces;
 using MEC;
-using SuicidePro.Utility;
 
-namespace SuicidePro.Effects
+namespace KillPlugin.Effects
 {
     public class Explode : IDeathEffect
     {
