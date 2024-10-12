@@ -1,6 +1,5 @@
 ﻿using System;
 using Exiled.API.Features;
-
 namespace KillPlugin
 {
     public class Plugin : Plugin<Config>

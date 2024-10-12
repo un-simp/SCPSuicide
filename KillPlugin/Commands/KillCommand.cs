@@ -26,7 +26,7 @@ namespace KillPlugin.Commands
                 return false;
             }
             
-            var arg = arguments.FirstOrDefault();
+            
             /* how to add new effect.
              Create a file in ../Effects/
              inherit IDeathEffect
@@ -46,16 +46,21 @@ namespace KillPlugin.Commands
                 // not sure if this should be implemented but
                 new Effects.CustomVelocity("backflip", "Do a backflip!", "did an epic backflip", 1f,5,0)
             };
-            
+            var arg = arguments.FirstOrDefault() ?? "normal";
             if (arg!.Equals("help", StringComparison.OrdinalIgnoreCase))
             {
                 response = "Available effects:\n" + string.Join("\n", availableEffects.Select(e => $"{e.Name}: {e.Description}"));
                 return true;
             }
+            
             // attempts to find the effect and if it can't default to killing normally
-            var effect = availableEffects.Find(e => e.Name.Equals(arg, StringComparison.OrdinalIgnoreCase)) 
-                         ?? availableEffects.Find(e => e.Name.Equals("normal", StringComparison.OrdinalIgnoreCase));
-
+            var effect = availableEffects.FirstOrDefault(e => e.Name.Equals(arg, StringComparison.OrdinalIgnoreCase));
+            Log.Info(effect != null ? $"Found effect: {effect}" : "No effect");
+            if (effect == null)
+            {
+                throw new InvalidOperationException("No effect found and 'Normal' effect is missing. Something has really gone wrong!");
+            }
+    
             if (effect.Run(Player.Get(sender)))
             {
                 response = "You have killed yourself";

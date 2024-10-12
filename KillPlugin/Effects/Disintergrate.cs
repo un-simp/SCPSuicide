@@ -1,4 +1,3 @@
-
 using Exiled.API.Features;
 using KillPlugin.Interfaces;
 using PlayerStatsSystem;
