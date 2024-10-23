@@ -44,7 +44,10 @@ namespace KillPlugin.Commands
                 new Effects.Gun(),
                 new Effects.Fling(),
                 // not sure if this should be implemented but
-                new Effects.CustomVelocity("backflip", "Do a backflip!", "did an epic backflip", 1f,5,0)
+                new Effects.CustomVelocity("backflip", "Do a backflip!", "Did an epic backflip", -1f,5,0),
+                new Effects.CustomVelocity("ascend", "Ascends to another plane", "Ascended",0,10,0),
+                new Effects.CustomVelocity("flip", "Do a flip!", "Epik flip",1,5,0),
+                new Effects.CustomVelocity("???","uhhhhhh","i dont know what happened here",70,70,70)
             };
             var arg = arguments.FirstOrDefault() ?? "normal";
             if (arg!.Equals("help", StringComparison.OrdinalIgnoreCase))
