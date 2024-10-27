@@ -58,6 +58,9 @@
     <Reference Include="Assembly-CSharp-firstpass">
       <HintPath>..\..\..\.local\share\Steam\steamapps\common\SCP Secret Laboratory Dedicated Server\SCPSL_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
     </Reference>
+    <Reference Include="AutoEvent">
+      <HintPath>..\..\..\.config\EXILED\Plugins\AutoEvent-Exiled.dll</HintPath>
+    </Reference>
     <Reference Include="CommandSystem.Core, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ExMod.Exiled.8.12.2\lib\net48\CommandSystem.Core.dll</HintPath>
     </Reference>

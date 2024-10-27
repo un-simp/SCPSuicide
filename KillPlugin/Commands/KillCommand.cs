@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using CommandSystem;
 using Exiled.API.Features;
@@ -75,21 +76,19 @@ namespace KillPlugin.Commands
         }
 
         // ReSharper disable once MemberCanBeMadeStatic.Local
+        [SuppressMessage("ReSharper", "ConditionIsAlwaysTrueOrFalse")]
         private bool IsExecutable(Player player)
         {
-            var result = true;
+            var result = !(Plugin.Instance.Config.BannedRoles.Contains(player.Role)  || player.Role == RoleTypeId.None) || player.CheckPermission("Suicide.bypass");
             if (!Round.IsStarted)
             {
                 // returns here because it MUST not run during no round
                 return false;
             }
-            if (Plugin.Instance.Config.BannedRoles.Contains(player.Role)  || player.Role == RoleTypeId.None)
+            // takes priority over perms because events break if suicided
+            if (AutoEvent.AutoEvent.ActiveEvent != null)
             {
-               result = false;
-            }
-            if (player.CheckPermission("Suicide.bypass"))
-            {
-                result = true;
+                result = false;
             }
             return result;
 
